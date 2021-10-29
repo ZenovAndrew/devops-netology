@@ -13,4 +13,4 @@ first string
 8. исключены все файлы заканчивающиеся на _override.tf
 9. исключены все файлы заканчивающиеся на _override.tf.json
 10. исключен файл .terraformrc
-11. исключен файл terraform.rc
+11. исключен файл terraform.rcghbdtn
