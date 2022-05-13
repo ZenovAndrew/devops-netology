@@ -2,15 +2,15 @@
 
 ## Блок 1. Введение в DevOps
 
-1.1. [ ] [Введение в DevOps](01-intro-01/README.md)
+1.1. [v] [Введение в DevOps](./homeworks/1/README.md)
 
 ## Блок 2. Системы управления версиями
 
-2.1. [ ] [Системы контроля версий](./homeworks/2.1/README.md)
+2.1. [v] [Системы контроля версий](./homeworks/2.1/README.md)
 
-2.2. [ ] [Основы Git](./homeworks/2.2/README.md)
+2.2. [v] [Основы Git](./homeworks/2.2/README.md)
 
-2.3. [ ] [Ветвления в Git](./homeworks/2.3/README.md)
+2.3. [v] [Ветвления в Git](./homeworks/2.3/README.md)
 
 2.4. [x] [Инструменты Git](./homeworks/2.4/README.md)
 
