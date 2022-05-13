@@ -115,13 +115,13 @@
 
 9.1. [x][Жизненный цикл ПО](./homeworks/9.1/README.md)
 
-9.2. [ ][Процессы CI/CD](./homeworks/9.2/README.md)
+9.2. [x][Процессы CI/CD](./homeworks/9.2/README.md)
 
 9.3. [ ][Jenkins](./homeworks/9.3/README.md)
 
 9.4. [ ][Teamcity](./homeworks/9.4/README.md)
 
-9.5. [ ][Gitlab](./homeworks/9.5/README.md)
+9.5. [x][Gitlab](./homeworks/9.5/README.md)
 
 ## Блок 10. Системы мониторинга
 
