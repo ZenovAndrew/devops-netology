@@ -103,7 +103,7 @@
 
 ## Блок 8. Система управления конфигурациями
 
-8.1. [ ][Введение в Ansible](./homeworks/8.1/README.md)
+8.1. [x][Введение в Ansible](./homeworks/8.1/README.md)
 
 8.2. [ ][Работа с Playbook](./homeworks/8.2/README.md)
 
