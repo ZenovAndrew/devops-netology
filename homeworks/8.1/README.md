@@ -444,7 +444,24 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 ```
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
 ```bash
-пока тут пусто =(
+
+#!/bin/bash
+#добавляем пас в файл
+echo netology > vault_file
+
+echo "Running docker..."
+docker run -d --rm --name centos pycontribs/centos:7 /bin/sleep 77777777777777777
+docker run -d --rm --name ubuntu pycontribs/ubuntu:latest /bin/sleep 77777777777777777
+docker run -d --rm --name fedora pycontribs/fedora:latest /bin/sleep 77777777777777777
+
+echo "Statring playbook"
+ansible-playbook -i inventory/prod.yml site.yml --vault-pass-file vault_file
+
+echo "Stopping docker..."
+docker stop centos7 ubuntu fedora
+
+
+
 ```
 6. Все изменения должны быть зафиксированы и отправлены в вашей личный репозиторий.
 ```bash
