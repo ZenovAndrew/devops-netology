@@ -119,7 +119,7 @@
 
 9.3. [ ][Jenkins](./homeworks/9.3/README.md)
 
-9.4. [ ][Teamcity](./homeworks/9.4/README.md)
+9.4. [x][Teamcity](./homeworks/9.4/README.md)
 
 9.5. [x][Gitlab](./homeworks/9.5/README.md)
 
