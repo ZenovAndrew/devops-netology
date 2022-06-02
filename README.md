@@ -123,10 +123,13 @@
 
 9.5. [x][Gitlab](./homeworks/9.5/README.md)
 
-## 
+
 
 <details>
-<summary> Блок 10. Системы мониторинга </summary>
+<summary> Пропущенный блок </summary>
+  
+## Блок 10. Системы мониторинга
+  
 10.1. [ ][Зачем и что нужно мониторить](./homeworks/10.1/README.md)
 
 10.2. [ ][Системы для мониторинга](./homeworks/10.2/README.md)
