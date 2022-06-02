@@ -123,8 +123,10 @@
 
 9.5. [x][Gitlab](./homeworks/9.5/README.md)
 
-## Блок 10. Системы мониторинга
+## 
 
+<details>
+<summary> Блок 10. Системы мониторинга </summary>
 10.1. [ ][Зачем и что нужно мониторить](./homeworks/10.1/README.md)
 
 10.2. [ ][Системы для мониторинга](./homeworks/10.2/README.md)
@@ -136,7 +138,7 @@
 10.5. [ ][Система-перехватчик ошибок Sentry](./homeworks/10.5/README.md)
 
 10.6. [ ] [Инцидент-менеджмент](./homeworks/10.6/README.md)
-
+</details>
 
 ## Дополнительные материалы к лекциям
 [Дополнительные материалы к лекциям по Ansible](https://github.com/netology-code/mnt-homeworks/tree/master/08-ansible-additional)
