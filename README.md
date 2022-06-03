@@ -81,6 +81,7 @@
 
 ---
 ### Дополнительные материалы
+
 [Модуль 6. Администрирование баз данных](https://github.com/netology-code/virt-homeworks/tree/master/additional)
 
 ---
@@ -115,7 +116,9 @@
 
 ---
 ### Дополнительные материалы к лекциям
+
 [Дополнительные материалы к лекциям по Ansible](https://github.com/netology-code/mnt-homeworks/tree/master/08-ansible-additional)
+
 ---
 
 
