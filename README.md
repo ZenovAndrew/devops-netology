@@ -78,8 +78,9 @@
 6.5. [x][Elasticsearch](./homeworks/6.5/README.md)
 
 6.6. [x][Troubleshooting](./homeworks/6.6/README.md)
+
 ---
-# Дополнительные материалы
+### Дополнительные материалы
 [Модуль 6. Администрирование баз данных](https://github.com/netology-code/virt-homeworks/tree/master/additional)
 
 ---
@@ -111,8 +112,9 @@
 8.3. [ ][Работа с Roles](./homeworks/8.3/README.md)
 
 8.4. [ ][Создание собственных модулей](./homeworks/8.4/README.md)
+
 ---
-# Дополнительные материалы к лекциям
+### Дополнительные материалы к лекциям
 [Дополнительные материалы к лекциям по Ansible](https://github.com/netology-code/mnt-homeworks/tree/master/08-ansible-additional)
 ---
 
