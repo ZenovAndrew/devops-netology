@@ -111,8 +111,13 @@ AWS предоставляет достаточно много бесплатн�
 vagrant@test1:~/homeworks/devops-netology/homeworks/7.2/terraform$ terraform validate
 Success! The configuration is valid.
 
-
-vagrant@test1:~/homeworks/devops-netology/homeworks/7.2/terraform$ terraform plan
+.2/terraform$ terraform plan
+data.yandex_resourcemanager_cloud.foo: Reading...
+data.yandex_iam_policy.admin: Reading...
+data.yandex_iam_service_account.builder: Reading...
+data.yandex_iam_policy.admin: Read complete after 0s [id=3684673327]
+data.yandex_iam_service_account.builder: Read complete after 1s
+data.yandex_resourcemanager_cloud.foo: Read complete after 1s [id=b1gr2tne2e53oneacrr0]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
 following symbols:
@@ -125,7 +130,7 @@ Terraform will perform the following actions:
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
-      + hostname                  = (known after apply)
+      + hostname                  = "hm2.terraform.ru"
       + id                        = (known after apply)
       + metadata                  = {
           + "ssh-keys" = <<-EOT
@@ -186,6 +191,15 @@ Terraform will perform the following actions:
         }
     }
 
+  # yandex_iam_service_account.sa will be created
+  + resource "yandex_iam_service_account" "sa" {
+      + created_at  = (known after apply)
+      + description = "service account to manage VMs"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + name        = "VM Manager"
+    }
+
   # yandex_vpc_network.network-1 will be created
   + resource "yandex_vpc_network" "network-1" {
       + created_at                = (known after apply)
@@ -212,9 +226,10 @@ Terraform will perform the following actions:
       + zone           = "ru-central1-a"
     }
 
-Plan: 3 to add, 0 to change, 0 to destroy.
+Plan: 4 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
+  + cloud_create_timestamp   = "2022-06-02T10:57:09Z"
   + external_ip_address_vm_1 = (known after apply)
   + internal_ip_address_vm_1 = (known after apply)
 
@@ -222,8 +237,6 @@ Changes to Outputs:
 
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if
 you run "terraform apply" now.
-vagrant@test1:~/homeworks/devops-netology/homeworks/7.2/terraform$
-
 ```
 
 В качестве результата задания предоставьте:

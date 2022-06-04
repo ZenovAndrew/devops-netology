@@ -1,23 +1,14 @@
-terraform {
-  required_providers {
-    yandex = {
-      source = "yandex-cloud/yandex"
-    }
-  }
-  required_version = ">= 0.13"
-}
-
 
 provider "yandex" {
-  token     = "AQAAAAAAH-rnAATuwWAtpLXfx00RodYWevduvf0"
-  cloud_id  = "b1g9ndtf5btu3mfnm9nm"
-  folder_id = "b1g1nf0tap4272dp18no"
-  zone      = "ru-central1-a"
+  token     = var.yandex_token
+  cloud_id  = var.yandex_cloud_id
+  folder_id = var.yandex_folder_id
+  zone      = var.yandex_zone_default
 }
-
 
 resource "yandex_compute_instance" "vm-1" {
   name = "terraform1"
+  hostname    = "hm2.terraform.ru"  
 
   resources {
     cores  = 2
@@ -26,7 +17,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "f2ejnevg7l0maomt8hln"
+      image_id = var.ubuntu
     }
   }
 
@@ -51,16 +42,6 @@ resource "yandex_vpc_subnet" "subnet-1" {
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
-}
-
-output "internal_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
-}
-
-
-
-output "external_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
 
 
