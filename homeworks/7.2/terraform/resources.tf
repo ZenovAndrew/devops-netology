@@ -26,7 +26,3 @@ output "cloud_create_timestamp" {
   value = "${data.yandex_resourcemanager_cloud.foo.created_at}"
 } 
 
-resource "yandex_iam_service_account" "sa" {
-  name        = "VM Manager"
-  description = "service account to manage VMs"
-}

@@ -23,7 +23,7 @@ variable "yandex_token" {
   type = string
 }
 
-# ID берем из вывода команды yc compute image list | grep ubuntu
+# ID берем из вывода команды yc compute image list --folder-id standard-images | grep ubuntu
 variable "ubuntu" {
-  default = "f2ejnevg7l0maomt8hln"
+  default = "fd8iofc8jffgt2qs0eco"
 }
