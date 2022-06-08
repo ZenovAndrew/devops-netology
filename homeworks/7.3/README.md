@@ -18,10 +18,6 @@
 dynamodb.
     * иначе будет создан локальный файл со стейтами.  
 	
-	```
-	
-
-
 ```
 #ошибка инициализации без VPN
 vagrant@test1:~/7.3$ terraform init
@@ -80,8 +76,6 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 
 ```
-
-	```
 2. Создайте два воркспейса `stage` и `prod`.
 
 ```
@@ -729,8 +723,7 @@ yandex_compute_instance.vm[0]: Creation complete after 1m8s [id=fhmeicafor4esjrs
 ```
 bucket создался
 ```
-
-![pics/bucket.png]
+![](pics/bucket.png)
 
 
 ```
