@@ -11,8 +11,8 @@ terraform {
     bucket     = "zenov.bucket"
     region     = "ru-central1"
     key        = "terraform.tfstate"
-    access_key = "YCAJE28D7HFuEgkgSJ86-jiN0"
-    secret_key = "YCNGsaZiSjjbbyq7HWnlqvSzaPsbCkQ0JliHZH6A"
+    access_key = "*****************kgSJ86-jiN0"
+    secret_key = "**************HWnlqvSzaPsbCkQ0JliHZH6A"
 
     skip_region_validation      = true
     skip_credentials_validation = true
