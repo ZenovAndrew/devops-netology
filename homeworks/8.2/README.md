@@ -6,7 +6,6 @@
 3. Подготовьте хосты в соотвтествии с группами из предподготовленного playbook. 
 4. Скачайте дистрибутив [java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) и положите его в директорию `playbook/files/`. 
 
-https://www.oracle.com/java/technologies/downloads/#license-lightbox
 
 ## Основная часть
 1. Приготовьте свой собственный inventory файл `prod.yml`.
@@ -75,7 +74,8 @@ kibana:
 9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 10. Готовый playbook выложите в свой репозиторий, в ответ предоставьте ссылку на него.
 
-`Ссылка на репозиторий с playbook:` ./playbook/README.md
+[Ссылка на репозиторий с playbook](./playbook/README.md)
+
 
 
 ## Необязательная часть
