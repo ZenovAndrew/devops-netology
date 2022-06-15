@@ -1,11 +1,9 @@
 ---
-elasticsearch:
+clickhouse:
   hosts:
-    localhost:
-      ansible_connection: ssh
-      ansible_user: root
-kibana:
+    clickhouse-01:
+      ansible_host: 130.193.52.219
+vector:
   hosts:
-    localhost:
-      ansible_connection: local
-      ansible_user: root
+    clickhouse-01:
+      ansible_host: 130.193.52.219

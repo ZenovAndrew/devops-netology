@@ -1,107 +1,61 @@
 ---
-- name: Install Java
-  hosts: all
+- name: Install Clickhouse
+  hosts: clickhouse
+  handlers:
+    - name: Start clickhouse service
+      become: true
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: restarted
   tasks:
-    - name: Set facts for Java 11 vars
-      set_fact:
-        java_home: "/opt/jdk/{{ java_jdk_version }}"
-      tags: java
-    - name: Upload .tar.gz file containing binaries from local storage
-      copy:
-        src: "{{ java_oracle_jdk_package }}"
-        dest: "/tmp/jdk-{{ java_jdk_version }}.tar.gz"
-      register: download_java_binaries
-      until: download_java_binaries is succeeded
-      tags: java
-    - name: Ensure installation dir exists
+    - block:
+        - name: Get clickhouse distrib
+          ansible.builtin.get_url:
+            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
+            dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
+          with_items: "{{ clickhouse_packages }}"
+      rescue:
+        - name: Get clickhouse distrib
+          ansible.builtin.get_url:
+            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
+            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
+    - name: Install clickhouse packages
       become: true
-      file:
-        state: directory
-        path: "{{ java_home }}"
-      tags: java
-    - name: Extract java in the installation directory
+      ansible.builtin.yum:
+        name:
+          - clickhouse-common-static-{{ clickhouse_version }}.rpm
+          - clickhouse-client-{{ clickhouse_version }}.rpm
+          - clickhouse-server-{{ clickhouse_version }}.rpm
+      notify: Start clickhouse service
+    - name: Flush handlers
       become: true
-      unarchive:
-        copy: false
-        src: "/tmp/jdk-{{ java_jdk_version }}.tar.gz"
-        dest: "{{ java_home }}"
-        extra_opts: [--strip-components=1]
-        creates: "{{ java_home }}/bin/java"
-      tags:
-        - java
-    - name: Export environment variables
-      become: true
-      template:
-        src: jdk.sh.j2
-        dest: /etc/profile.d/jdk.sh
-      tags: java
-- name: Install Elasticsearch
-  hosts: elasticsearch
+      meta: flush_handlers
+    - name: Create database
+      command: "clickhouse-client -q 'create database logs;'"
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82
+      changed_when: create_db.rc == 0
+- name: Install Vector
+  hosts: vector
+  handlers:
+    - name: Start Vector service
+      ansible.builtin.service:
+        name: vector
+        state: restarted
   tasks:
-    - name: Upload tar.gz Elasticsearch from remote URL
-      get_url:
-        url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz"
-        dest: "/tmp/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz"
-        mode: 0755
-        timeout: 60
-        force: true
-        validate_certs: false
-      register: get_elastic
-      until: get_elastic is succeeded
-      tags: elastic
-    - name: Create directrory for Elasticsearch
+    - name: Create vector_home dir
       file:
+        path: "{{ vector_home }}"
         state: directory
-        path: "{{ elastic_home }}"
-      tags: elastic
-    - name: Extract Elasticsearch in the installation directory
+        mode: 0777
+      tags: vector
+    - name: Get vector distrib
+      ansible.builtin.get_url:
+        url: "{{ vector_url }}"
+        dest: "{{ vector_home }}/vector-{{ vector_version }}-1.x86_64.rpm"
+      tags: vector
+    - name: Install vector packages
       become: true
-      unarchive:
-        copy: false
-        src: "/tmp/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz"
-        dest: "{{ elastic_home }}"
-        extra_opts: [--strip-components=1]
-        creates: "{{ elastic_home }}/bin/elasticsearch"
-      tags:
-        - elastic
-    - name: Set environment Elastic
-      become: true
-      template:
-        src: templates/elk.sh.j2
-        dest: /etc/profile.d/elk.sh
-      tags: elastic
-- name: Install Kibana
-  hosts: kibana
-  tasks:
-    - name: Upload tar.gz Kibana from remote URL
-      get_url:
-        url: "https://artifacts.elastic.co/downloads/kibana/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
-        dest: "/tmp/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
-        mode: 0755
-        timeout: 60
-        force: true
-        validate_certs: false
-      register: get_kibana
-      until: get_kibana is succeeded
-      tags: kibana
-    - name: Create directrory for Kibana
-      file:
-        state: directory
-        path: "{{ kibana_home }}"
-      tags: kibana
-    - name: Extract Kibana in the installation directory
-      become: true
-      unarchive:
-        copy: false
-        src: "/tmp/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
-        dest: "{{ kibana_home }}"
-        extra_opts: [--strip-components=1]
-        creates: "{{ kibana_home }}/bin/kibana"
-      tags:
-        - kibana
-    - name: Set environment Kibana
-      become: true
-      template:
-        src: templates/kib.sh.j2
-        dest: /etc/profile.d/kib.sh
-      tags: kibana
+      ansible.builtin.yum:
+        name: "{{ vector_home }}/vector-{{ vector_version }}-1.x86_64.rpm"
+      notify: Start Vector service
