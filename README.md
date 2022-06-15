@@ -108,7 +108,7 @@
 
 8.1. [x][Введение в Ansible](./homeworks/8.1/README.md)
 
-8.2. [ ][Работа с Playbook](./homeworks/8.2/README.md)
+8.2. [x][Работа с Playbook](./homeworks/8.2/README.md)
 
 8.3. [ ][Работа с Roles](./homeworks/8.3/README.md)
 
