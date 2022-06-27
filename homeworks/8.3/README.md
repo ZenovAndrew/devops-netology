@@ -5,11 +5,10 @@
 
 ## Подготовка к выполнению
 1. Создайте два пустых публичных репозитория в любом своём проекте: vector-role и lighthouse-role.
-```
+
 https://github.com/ZenovAndrew/lighthouse-role
 https://github.com/ZenovAndrew/vector-role
 
-```
 
 2. Добавьте публичную часть своего ключа к своему профилю в github.
 ```
@@ -305,12 +304,12 @@ server                     : ok=46   changed=25   unreachable=0    failed=0    s
 
 10. Выложите playbook в репозиторий.
 
-```
-https://github.com/ZenovAndrew/devops-netology/tree/main/homeworks/8.4
-```
+https://github.com/ZenovAndrew/devops-netology/tree/main/homeworks/8.3
+
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
-```
+
 https://github.com/ZenovAndrew/lighthouse-role
 https://github.com/ZenovAndrew/vector-role
 
-```
+
+PS: была проблема с доступом по готовой роли, пришлось подправить ansible config
