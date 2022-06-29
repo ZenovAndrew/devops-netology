@@ -110,7 +110,7 @@
 
 8.2. [x][Работа с Playbook](./homeworks/8.2/README.md)
 
-8.3. [ ][Работа с Roles](./homeworks/8.3/README.md)
+8.3. [x][Работа с Roles](./homeworks/8.3/README.md)
 
 8.4. [ ][Создание собственных модулей](./homeworks/8.4/README.md)
 
@@ -128,7 +128,7 @@
 
 9.2. [x][Процессы CI/CD](./homeworks/9.2/README.md)
 
-9.3. [ ][Jenkins](./homeworks/9.3/README.md)
+9.3. [x][Jenkins](./homeworks/9.3/README.md)
 
 9.4. [x][Teamcity](./homeworks/9.4/README.md)
 
