@@ -128,7 +128,7 @@
 
 9.2. [x][Процессы CI/CD](./homeworks/9.2/README.md)
 
-9.3. [ ][Jenkins](./homeworks/9.3/README.md)
+9.3. [x][Jenkins](./homeworks/9.3/README.md)
 
 9.4. [x][Teamcity](./homeworks/9.4/README.md)
 
