@@ -1,3 +1,4 @@
+
 # Домашнее задание к занятию "7.6. Написание собственных провайдеров для Terraform."
 
 Бывает, что 
@@ -25,21 +26,20 @@ https://github.com/hashicorp/terraform-provider-aws/blob/3bc094e858c8417c36d9331
 1. Для создания очереди сообщений SQS используется ресурс `aws_sqs_queue` у которого есть параметр `name`. 
 
     * С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
-	
-https://github.com/hashicorp/terraform-provider-aws/blob/3bc094e858c8417c36d933118d86e127982b532e/internal/service/sqs/queue.go#L87
-
     * Какая максимальная длина имени? 
-	80 символов см. ниже
-	
     * Какому регулярному выражению должно подчиняться имя? 
-	https://github.com/hashicorp/terraform-provider-aws/blob/3bc094e858c8417c36d933118d86e127982b532e/internal/service/sqs/queue.go#L424
+
+Ответы:
+* https://github.com/hashicorp/terraform-provider-aws/blob/3bc094e858c8417c36d933118d86e127982b532e/internal/service/sqs/queue.go#L87
+* 80 символов см. ниже
+* https://github.com/hashicorp/terraform-provider-aws/blob/3bc094e858c8417c36d933118d86e127982b532e/internal/service/sqs/queue.go#L424
 ```
 		if fifoQueue {
 			re = regexp.MustCompile(`^[a-zA-Z0-9_-]{1,75}\.fifo$`)
 		} else {
 			re = regexp.MustCompile(`^[a-zA-Z0-9_-]{1,80}$`)
 		}
-```	
+```
 	
     
 ## Задача 2. (Не обязательно) 
