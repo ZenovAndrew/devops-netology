@@ -419,6 +419,7 @@ all:
 12. Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
 
 https://github.com/ZenovAndrew/my_own_collection/tree/1.0.0
+
 13. Создайте .tar.gz этой collection: `ansible-galaxy collection build` в корневой директории collection.
 ```
 vagrant@test1:/tmp/my_own_collection/my_own_namespace/my_own_collection$ ansible-galaxy collection build
