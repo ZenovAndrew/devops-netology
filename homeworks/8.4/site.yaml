@@ -1,0 +1,8 @@
+---
+  - name: Some play
+    hosts: all 
+    tasks:
+      - name: execute module
+        my_own_namespace.my_own_collection.create_file:
+          path: "/tmp/somefile.txt"
+          content: "fhdjkbhfjkd fn"
