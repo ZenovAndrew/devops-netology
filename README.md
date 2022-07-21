@@ -46,7 +46,7 @@
 
 1. [ ] [Модуль 4. Скриптовые языки и языки разметки: Python, Bash, YAML, JSON](https://github.com/netology-code/sysadm-homeworks/tree/master/04-script-03-yaml/additional-info)
 
-## Курсовая работа по итогам модуля
+# Курсовая работа по итогам модуля
 1. [x] [Курсовая работа по итогам модуля](./homeworks/kurs/README.md)
 
 
