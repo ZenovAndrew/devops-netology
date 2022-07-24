@@ -1,0 +1,20 @@
+- hosts: gitlab
+  gather_facts: true
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    andrew
+  roles:
+# в роли не выполняется одна таска т.к. нет нужного пакета в репе yandex
+#   - geerlingguy.gitlab 
+    - gitlab
+
+  environment:
+     http_proxy: http://zenov.website:8118
+     https_proxy: http://zenov.website:8118
+     GITLAB_ROOT_PASSWORD: "{{ gitlab_initial_root_password }}"
+     GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN: "{{ gitlab_runners_registration_token }}"

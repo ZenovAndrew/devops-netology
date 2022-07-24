@@ -1,0 +1,60 @@
+#https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-wordpress-with-lamp-on-ubuntu-18-04-ru
+---
+- name: Install Nginx
+  apt:
+    name=nginx
+    state=latest
+
+- name: Install Nginx config for site
+  template:
+    src=templates/nginx.conf
+    dest=/etc/nginx/sites-enabled/default
+
+- name: Install PHP Extensions
+  apt: name={{ item }} update_cache=yes state=latest
+  loop: "{{ php_modules }}"
+
+
+- name: Create document root
+  file:
+    path: "/var/www/{{ domain }}"
+    state: directory
+    owner: "www-data"
+    group: "www-data"
+    mode: '0755'
+
+- name: Download and unpack latest WordPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: "/var/www/{{ domain }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+    creates: "/var/www/{{ domain }}/wp-admin"
+
+- name: Set ownership
+  file:
+    path: "/var/www/{{ domain }}"
+    state: directory
+    recurse: yes
+    owner: www-data
+    group: www-data
+
+- name: Set permissions for directories
+  shell: "/usr/bin/find /var/www/{{ domain }}/ -type d -exec chmod 755 {} \\;"
+
+- name: Set permissions for files
+  shell: "/usr/bin/find /var/www/{{ domain }}/ -type f -exec chmod 644 {} \\;"
+
+- name: Set up wp-config
+  template:
+    src: "templates/wp-config.php.j2"
+    dest: "/var/www/{{ domain }}/wp-config.php"
+
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Install git
+  action: apt pkg=git state=present update_cache=true
+

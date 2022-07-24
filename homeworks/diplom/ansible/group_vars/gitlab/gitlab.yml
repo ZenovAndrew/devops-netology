@@ -1,0 +1,11 @@
+---
+# General config
+     gitlab_domain: gitlab.zenov.website
+     gitlab_external_url: "http://{{ gitlab_domain }}/"
+# SSL Configuration.
+     gitlab_redirect_http_to_https: false
+# SSL Self-signed Certificate Configuration.
+     gitlab_create_self_signed_cert: false
+# Credentials
+     gitlab_initial_root_password: "mypassword"
+     gitlab_runners_registration_token: "ynKSkG2uQV5sZV_ZxVye"

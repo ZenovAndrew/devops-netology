@@ -1,0 +1,113 @@
+---
+# Обновление всех пакетов
+- name: apt update
+  apt:
+    update_cache: yes
+
+# Установка Nginx
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+
+# Удаление конфигурации Nginx по умолчанию 
+- name: Configuring nginx (remove default config)
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Configuring nginx (install new config)
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+
+
+# Установка Let's Encrypt
+- name: Install Lets Encrypt
+  apt:
+    name: letsencrypt
+    state: latest
+# Создание рабочей директории для LE
+- name: Configuring Lets Encrypt (create work directory)
+  file:
+    name: /var/www/letsencrypt
+    state: directory
+
+
+- name: Configuring nginx (configure Lets Encrypt requests)
+  template:
+    src: templates/nginx-http.conf.j2
+    dest: /etc/nginx/sites-enabled/http.conf
+
+# Рестарт Nginx после добавления новой конфигурации
+- name: Configuring nginx (restart service)
+  service:
+    name: nginx
+    state: restarted
+
+# Создание сертификатов
+- name: Generate Lets Encrypt certificate Main
+  shell: letsencrypt certonly -n --webroot {{ le_param }} -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/{{ domain_name }}
+
+- name: Generate Lets Encrypt certificate Gitlab
+  shell: letsencrypt certonly -n --webroot {{ le_param }} -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d gitlab.{{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/gitlab.{{ domain_name }}
+
+- name: Generate Lets Encrypt certificate Grafana
+  shell: letsencrypt certonly -n --webroot {{ le_param }} -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d grafana.{{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/grafana.{{ domain_name }}
+
+- name: Generate Lets Encrypt certificate Prometheus
+  shell: letsencrypt certonly -n --webroot {{ le_param }} -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d prometheus.{{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/prometheus.{{ domain_name }}
+
+- name: Generate Lets Encrypt certificate Alertmanager
+  shell: letsencrypt certonly -n --webroot {{ le_param }} -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d alertmanager.{{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/alertmanager.{{ domain_name }}
+
+# Добавление криптограффии
+- name: Generate dhparams
+  shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
+  args:
+    creates: /etc/nginx/dhparams.pem
+
+# Добавление SSL конфигурации
+- name: Configuring nginx (https)
+  template:
+    src: templates/nginx-le.conf.j2
+    dest: /etc/nginx/sites-enabled/le.conf
+
+
+# Рестарт Nginx
+- name: Configuring nginx (restart service)
+  service:
+    name: nginx
+    state: restarted
+
+# Установка Proxy
+- name: Install Proxy
+  apt:
+    name: privoxy
+    state: present
+
+- name: Configure Proxy
+  template:
+    src: privoxy.cfg
+    dest: /etc/privoxy/config
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Proxy
+
+- name: Start Proxy server
+  service:
+    name: privoxy
+    state: started
+    enabled: true
+

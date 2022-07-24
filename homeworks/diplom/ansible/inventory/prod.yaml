@@ -1,0 +1,40 @@
+all:
+  children:
+    main:
+      hosts:
+        zenov.website:
+          domain_name: zenov.website
+          letsencrypt_email: andrew@zenov.website
+    mysql:
+      hosts:
+        db01.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+          mysql_replication_role: master
+          mysql_server_id: 1
+        db02.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+          mysql_replication_role: slave
+          mysql_server_id: 2
+    app:
+      hosts:
+        app.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+    gitlab:
+      hosts:
+        gitlab.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+    monitoring:
+      hosts:
+        monitoring.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+    runner:
+      hosts:
+        runner.zenov.website:
+          domain_name: zenov.website
+          ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q andrew@zenov.website"
+

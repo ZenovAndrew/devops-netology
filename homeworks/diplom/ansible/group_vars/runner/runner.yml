@@ -1,0 +1,5 @@
+---
+# GitLab coordinator URL
+gitlab_runner_coordinator_url: 'http://gitlab.{{ domain_name }}'
+# GitLab registration token
+gitlab_runner_registration_token: 'ynKSkG2uQV5sZV_ZxVye'

@@ -1,0 +1,34 @@
+- hosts: all
+  gather_facts: true
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    andrew
+  roles:
+   - cloudalchemy.node_exporter
+
+  environment:
+     http_proxy: http://zenov.website:8118
+     https_proxy: http://zenov.website:8118
+
+- hosts: monitoring
+  gather_facts: true
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    andrew
+  roles:
+   - monitoring
+
+
+  environment:
+     http_proxy: http://zenov.website:8118
+     https_proxy: http://zenov.website:8118

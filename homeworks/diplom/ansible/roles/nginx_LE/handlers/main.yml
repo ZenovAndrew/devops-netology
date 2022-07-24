@@ -1,0 +1,6 @@
+---
+  - name: Restart Proxy
+    service:
+      name: privoxy
+      state: restarted
+

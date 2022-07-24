@@ -154,3 +154,6 @@
 10.6. [ ] [Инцидент-менеджмент](./homeworks/10.6/README.md)
 </details>
 
+
+# Дипломный практикум в YandexCloud
+[x] [Дипломный практикум в YandexCloud](./homeworks/diplom/README.md)
